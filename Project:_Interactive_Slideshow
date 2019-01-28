@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Project: Interactive slideshow</title>
+        <style>
+            h1{
+                text-align:center;
+                color:rgb(26, 89, 199);
+                margin:11px;
+            }
+            #button-back,#button-next{
+                
+                width:150px;
+                height:42px;
+                font-weight:bold;
+                font-size:1.4em;
+            }
+           
+            #pics{
+                width:483px;
+                height:250px;
+                overflow:hidden;
+                margin:0 auto;
+                text-align:center;
+            }
+            #pic{
+                
+            }
+            .buttons{
+                text-align:center;
+                width:74%;
+                padding:2px;
+                padding-top:15px;
+                margin:0 auto;
+                
+            }
+        </style>
+    </head>
+    <body style = "background:url(https://upload.wikimedia.org/wikipedia/commons/0/0f/Wiki_background.jpg">
+    <h1 id="">Slideshow</h1>
+    
+    <div id="pics">
+        <img id="pic" src="https://www.kasandbox.org/programming-images/landscapes/mountain_matterhorn.png" height="250" width="483" alt="Mountains">
+    </div>
+    <div class="buttons">
+        <button id="button-back" type="button">Previous </button>
+    <button id="button-next" type="button">Next</button> 
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+    var sources = ["https://www.kasandbox.org/programming-images/landscapes/mountain_matterhorn.png", "https://www.kasandbox.org/programming-images/landscapes/mountains-sunset.png", "https://www.kasandbox.org/programming-images/landscapes/waterfall_niagara-falls.png"];
+    var alts = ["mountains","sunset","waterfall"];
+    var index = 0;
+      
+    $("#button-next").on("click",function(){
+        index++;
+        index = (index === sources.length) ? 0 : index;
+        $("#pic").fadeOut(150,function(){
+            $("#pic").attr("src", sources[index]);
+            $("#pic").attr("alt", alts[index]);
+            $("#pic").fadeIn(150);
+        });
+        
+      
+    });
+    $("#button-back").on("click",function(){
+        index--;
+        index = (index === -1) ? sources.length - 1 : index;
+        console.log(index);
+       $("#pic").fadeOut(150,function(){
+            $("#pic").attr("src", sources[index]);
+            $("#pic").attr("alt", alts[index]);
+            $("#pic").fadeIn(150);
+        });
+    });
+    </script> 
+    
+    </body>
+</html>
